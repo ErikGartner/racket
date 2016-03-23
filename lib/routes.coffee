@@ -1,3 +1,3 @@
 Router.route('/', ->
-  @render('home')
+  @render('board')
 )

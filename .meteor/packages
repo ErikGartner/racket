@@ -35,3 +35,10 @@ datariot:ganalytics
 # Extra UI packages
 semantic:ui-css
 iandouglas:accounts-ui-semantic-ui
+
+adrianliaw:youtube-iframe-api
+
+
+autopublish
+insecure
+msavin:mongol

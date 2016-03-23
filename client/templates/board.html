@@ -1,0 +1,15 @@
+<template name="board">
+  <h1>Youbored</h1>
+  <div class="ui container">
+    <div class="ui doubling stacking five column centered grid">
+      <div class="row">
+        <div id="player"></div>
+      </div>
+      {{#each videos}}
+      <div class="column">
+        <button data-id="{{_id}}" class="ui fluid green button">{{name}}</button>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
