@@ -1,6 +1,5 @@
 @yPlayer = undefined
 @onYouTubeIframeAPIReady = =>
-  console.log 'sup'
   @yPlayer = new YT.Player 'player',
     height: '400'
     #width: '60'
@@ -15,6 +14,7 @@ Template.board.helpers
 Template.video.events
   'click .button': (event) ->
     video = Videos.findOne $(event.target).data('id')
+    console.log event.target.dataset.id
     yPlayer.loadVideoById
       'videoId': video.id
       'startSeconds': video.start
