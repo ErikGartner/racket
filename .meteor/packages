@@ -25,7 +25,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 coffeescript
 accounts-base
 accounts-facebook
-accounts-password
 
 # Extra middleware packages
 iron:router
