@@ -35,9 +35,12 @@ datariot:ganalytics
 # Extra UI packages
 semantic:ui-css
 iandouglas:accounts-ui-semantic-ui
+aldeed:autoform
+aldeed:delete-button
+fabienb4:autoform-semantic-ui
 
 adrianliaw:youtube-iframe-api
-
+easy:search
 
 autopublish
 insecure

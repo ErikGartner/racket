@@ -1,15 +1,104 @@
 <template name="board">
-  <h1>Racket</h1>
-  <div class="ui container">
-    <div class="ui doubling stacking five column centered grid">
+  <div class="ui fluid container">
+    <div class="ui centered grid">
       <div class="row">
-        <div id="player"></div>
+        <div class="twelve wide column">
+          <h1>Racket</h1>
+        </div>
       </div>
-      {{#each videos}}
-      <div class="column">
-        <button data-id="{{_id}}" class="ui fluid green button">{{name}}</button>
+      <div class="row" style="background:#000">
+        <div class="twelve wide column">
+          {{> player}}
+        </div>
       </div>
-      {{/each}}
+      <div class="row">
+        <div class="twelve wide column">
+          {{#if currentUser}}
+            {{> search}}
+          {{else}}
+            {{> search}}
+            {{> loginButtons}}
+          {{/if}}
+        </div>
+      </div>
     </div>
   </div>
+</template>
+
+<template name="video">
+  <div class="ui fluid container">
+    <div class="image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="content">
+              <h2 class="ui inverted header">{{name}}</h2>
+              {{description}}
+            </div>
+            <div class="ui basic segment">
+              <a href="https://youtube.com/watch?v={{id}}" class="ui red button">Youtube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img class="ui fluid image" src="https://i.ytimg.com/vi/{{id}}/hqdefault.jpg">
+    </div>
+    <div data-id="{{__originalId}}" class="ui bottom attached green button">
+      <i class="play icon"></i>
+      {{name}}
+    </div>
+  </div>
+</template>
+
+<template name="player">
+  <div class="ui fluid container" id="player"></div>
+</template>
+
+<template name="search">
+
+  <div class="ui doubling stacking centered grid">
+    <div class="row">
+      <div class="fifteen wide column">
+        <div class="ui left icon fluid large input">
+          {{> EasySearch.Input index=VideosIndex}}
+          <i class="video icon"></i>
+        </div>
+      </div>
+    </div>
+
+    {{#EasySearch.Each index=VideosIndex}}
+    <div class="five wide column">
+      {{> video}}
+    </div>
+    {{/EasySearch.Each}}
+
+    <div class="row">
+      <div class="eight wide column">
+        {{> addVideo}}
+      </div>
+    </div>
+
+  </div>
+
+<!--  {{> EasySearch.LoadMore index=VideosIndex}} -->
+
+</template>
+
+<template name="addVideo">
+  <div id="addVideo" class="ui fluid green button">Add</div>
+
+  <div class="ui very wide popup" id="addPopup">
+    <div class="header">Add video</div>
+    <div class="ui content">
+    {{#autoForm collection="Videos" id="addVideoForm" type="insert"}}
+        {{> afQuickField name='name'}}
+        {{> afQuickField name='id'}}
+        {{> afQuickField name='start'}}
+        {{> afQuickField name='end'}}
+        <br>
+        <button type="submit" class="ui blue button">Insert</button>
+    {{/autoForm}}
+    </div>
+  </div>
+
 </template>
