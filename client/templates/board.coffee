@@ -14,7 +14,7 @@ Template.board.helpers
 
 Template.video.events
   'click .button': (event) ->
-    video = Videos.findOne event.target.dataset.id
+    video = Videos.findOne $(event.target).data('id')
     yPlayer.loadVideoById
       'videoId': video.id
       'startSeconds': video.start
@@ -27,6 +27,10 @@ Template.video.onRendered ->
 Template.search.helpers
   VideosIndex: ->
     return VideosIndex
+
+Template.video.helpers
+  editable: ->
+    return @owner == Meteor.userId()
 
 Template.addVideo.onRendered ->
   $('#addVideo').popup

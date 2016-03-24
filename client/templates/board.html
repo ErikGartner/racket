@@ -1,25 +1,22 @@
 <template name="board">
   <div class="ui fluid container">
     <div class="ui centered grid">
-      <div class="row">
-        <div class="twelve wide column">
-          <h1>Racket</h1>
-        </div>
-      </div>
       <div class="row" style="background:#000">
         <div class="twelve wide column">
           {{> player}}
         </div>
       </div>
       <div class="row">
-        <div class="twelve wide column">
           {{#if currentUser}}
+          <div class="twelve wide column">
             {{> search}}
+          </div>
           {{else}}
-            {{> search}}
+          <div class="four wide column">
+            <h2>Please login!</h2>
             {{> loginButtons}}
+          </div>
           {{/if}}
-        </div>
       </div>
     </div>
   </div>
@@ -36,7 +33,10 @@
               {{description}}
             </div>
             <div class="ui basic segment">
-              <a href="https://youtube.com/watch?v={{id}}" class="ui red button">Youtube</a>
+              <a href="https://youtube.com/watch?v={{id}}" class="ui blue button">Youtube</a>
+              {{#if editable}}
+              {{> quickRemoveButton collection="Videos" _id=this._id class="ui red button"}}
+              {{/if}}
             </div>
           </div>
         </div>
@@ -93,6 +93,7 @@
     {{#autoForm collection="Videos" id="addVideoForm" type="insert"}}
         {{> afQuickField name='name'}}
         {{> afQuickField name='id'}}
+        {{> afQuickField name='description'}}
         {{> afQuickField name='start'}}
         {{> afQuickField name='end'}}
         <br>
